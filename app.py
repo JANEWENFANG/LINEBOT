@@ -32,6 +32,8 @@ from linebot.v3.webhooks import (
     LocationMessageContent,
 )
 
+from modules.reply import menu, faq
+
 import os
 
 app = Flask(__name__)
@@ -67,6 +69,8 @@ def handle_message(event):
         print("使用者傳入的文字訊息是:", user_msg)
         print("#" * 30)
         bot_msg = menu
+        if user_msg in faq:
+            bot_msg = faq[user_msg]
         
         
         
